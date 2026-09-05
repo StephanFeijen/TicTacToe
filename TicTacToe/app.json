@@ -1,5 +1,5 @@
 {
-  "id": "8145007e-d2cf-44f8-9a9a-38933b787fd8",
+  "id": "c07cfd1e-1fd0-40d1-8b0d-c4008faf22c5",
   "name": "TicTacToe",
   "publisher": "Stephan",
   "version": "1.0.0.0",
@@ -13,7 +13,8 @@
   "dependencies": [],
   "screenshots": [],
   "platform": "1.0.0.0",
-  "application": "22.0.0.0",
+  "runtime": "17.0",
+  "application": "28.0.0.0",
   "idRanges": [
     {
       "from": 50000,
