@@ -3,7 +3,7 @@ namespace DefaultPublisher;
 table 70101 "My Agent KPI"
 {
     Access = Internal;
-    Caption = 'My Agent KPI';
+    Caption = 'Tic-Tac-Toe Agent KPI';
     DataClassification = CustomerContent;
     InherentEntitlements = RIMDX;
     InherentPermissions = RIMDX;

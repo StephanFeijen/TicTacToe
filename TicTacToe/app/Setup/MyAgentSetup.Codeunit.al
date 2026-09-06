@@ -131,8 +131,8 @@ codeunit 70103 "My Agent Setup"
         DefaultPermissionSetTok: Label 'MY AGENT', Locked = true;
         DefaultProfileTok: Label 'MY AGENT PROFILE', Locked = true;
         AgentInitialsLbl: Label 'GEN', MaxLength = 4;
-        AgentNameLbl: Label 'My Agent';
-        DefaultDisplayNameLbl: Label 'My Agent';
-        AgentSummaryLbl: Label 'The description of what my agent does.';
+        AgentNameLbl: Label 'Tic-Tac-Toe Agent';
+        DefaultDisplayNameLbl: Label 'Tic-Tac-Toe Agent';
+        AgentSummaryLbl: Label 'Plays Tic-Tac-Toe as O against a human player.';
         DefaultCustomPropertyLbl: Label 'Default Value', Locked = true;
 }
