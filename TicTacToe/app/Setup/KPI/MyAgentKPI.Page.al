@@ -5,7 +5,7 @@ page 70102 "My Agent KPI"
     PageType = CardPart;
     ApplicationArea = All;
     UsageCategory = Administration;
-    Caption = 'My Agent Summary';
+    Caption = 'Tic-Tac-Toe Agent Summary';
     SourceTable = "My Agent KPI";
     Editable = false;
     Extensible = false;

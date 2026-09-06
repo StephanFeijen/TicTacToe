@@ -3,7 +3,7 @@ namespace DefaultPublisher;
 page 70103 "My Agent Role Center"
 {
     PageType = RoleCenter;
-    Caption = 'My Agent Role Center';
+    Caption = 'Tic-Tac-Toe Agent Role Center';
 
     layout
     {

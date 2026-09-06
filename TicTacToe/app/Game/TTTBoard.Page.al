@@ -1,5 +1,7 @@
 namespace DefaultPublisher;
 
+using System.Agents;
+
 page 70104 "TTT Board"
 {
     PageType = Card;
@@ -150,6 +152,52 @@ page 70104 "TTT Board"
                     end;
                 end;
             }
+            action(AssignAgentTask)
+            {
+                ApplicationArea = All;
+                Caption = 'Assign Agent Task';
+                ToolTip = 'Assign a task to the agent to play the next move on this board.';
+                Image = Task;
+                Promoted = true;
+                PromotedCategory = Process;
+                PromotedIsBig = true;
+                Enabled = Rec.Status = Rec.Status::Open;
+
+                trigger OnAction()
+                var
+                    MyAgentSetup: Record "My Agent Setup";
+                    AgentTask: Record "Agent Task";
+                    AgentSetup: Codeunit "Agent Setup";
+                    AgentCU: Codeunit Agent;
+                    MyAgent: Codeunit "My Agent Public API";
+                    AgentUserSecurityId: Guid;
+                    AgentName: Text;
+                    TaskTitle: Text[150];
+                    From: Text[250];
+                    MessageText: Text;
+                    MessageTemplateTxt: Label 'Please play the next move (as %1) on Tic-Tac-Toe board no. %2.', Locked = true;
+                begin
+                    // Select the agent to assign the task to
+                    if not AgentSetup.OpenAgentLookup(Enum::"Agent Metadata Provider"::"My Agent", AgentUserSecurityId) then
+                        exit;
+
+                    if not MyAgentSetup.Get(AgentUserSecurityId) then
+                        Error(SetupNotFoundErr);
+
+                    // Populate message context with board details
+                    MessageText := StrSubstNo(MessageTemplateTxt, Rec."Next Player", Rec."Entry No.");
+
+                    // Set task properties based on the board
+                    TaskTitle := CopyStr(StrSubstNo(TaskTitleLbl, Rec."Entry No."), 1, MaxStrLen(TaskTitle));
+                    From := CopyStr(UserId(), 1, MaxStrLen(From));
+
+                    // Assign the task to the agent
+                    AgentTask := MyAgent.AssignTask(AgentUserSecurityId, TaskTitle, From, MessageText);
+
+                    AgentName := AgentCU.GetDisplayName(AgentUserSecurityId);
+                    Message(TaskAssignedMsg, AgentTask.ID, AgentName, Rec."Entry No.");
+                end;
+            }
         }
     }
 
@@ -168,4 +216,9 @@ page 70104 "TTT Board"
         Rec.Insert(true);
         CurrPage.Update(false);
     end;
+
+    var
+        SetupNotFoundErr: Label 'The setup could not be found for the selected agent.', Comment = 'Error message when agent setup record does not exist.';
+        TaskTitleLbl: Label 'Play Tic-Tac-Toe Board: %1', Comment = '%1 = Board Entry No.';
+        TaskAssignedMsg: Label 'Task %1 assigned successfully to agent %2 for board %3.', Comment = '%1 = Task ID, %2 = Agent Name, %3 = Board Entry No.';
 }

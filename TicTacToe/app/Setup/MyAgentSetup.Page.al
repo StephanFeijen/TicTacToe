@@ -14,9 +14,9 @@ page 70100 "My Agent Setup"
     Extensible = false;
     ApplicationArea = All;
     IsPreview = true;
-    Caption = 'Set up my agent';
-    InstructionalText = 'My agent that is programmable to any task.';
-    AdditionalSearchTerms = 'My Agent, Agent';
+    Caption = 'Set up Tic-Tac-Toe agent';
+    InstructionalText = 'Plays Tic-Tac-Toe as O against a human player.';
+    AdditionalSearchTerms = 'Tic-Tac-Toe Agent, Agent, TTT';
     SourceTable = "My Agent Setup";
     SourceTableTemporary = true;
     InherentEntitlements = X;
@@ -163,6 +163,6 @@ page 70100 "My Agent Setup"
         AgentSetupBuffer: Record "Agent Setup Buffer";
         AzureOpenAI: Codeunit "Azure OpenAI";
         IsUpdated: Boolean;
-        MyAgentIsNotEnabledInCopilotCapabilitiesErr: Label 'The My Agent capability is not enabled in Copilot capabilities.\\Please enable the capability before setting up the agent.';
+        MyAgentIsNotEnabledInCopilotCapabilitiesErr: Label 'The Tic-Tac-Toe Agent capability is not enabled in Copilot capabilities.\\Please enable the capability before setting up the agent.';
         AgentDisplayName: Text[80];
 }
